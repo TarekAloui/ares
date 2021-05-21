@@ -8,4 +8,4 @@ nvidia-docker run --rm -it --init \
   -v /data:/data \
   -v /data/ilsvrc2012:/data/imagenet \
   -e NVIDIA_VISIBLE_DEVICES=0 \
-  arestest:gpu ./run.sh
+  ares ./run.sh

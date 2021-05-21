@@ -13,7 +13,7 @@ cfg = [64, 64, 'M', 128, 128, 'M', 256, 256, 256, 'M', 512, 512, 512, 'M']
 #ADAPTED FROM https://github.com/chengyangfu/pytorch-vgg-cifar10
 class cifarVGGPT(nn.Module):
     def __init__(self):
-        super(cifarPT, self).__init__()
+        super(cifarVGGPT, self).__init__()
         self.features = self._make_layers(cfg)
         self.class1 = nn.Linear(2048, 512)
         self.class2 = nn.Linear(512, 10)
