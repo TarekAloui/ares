@@ -1,0 +1,8 @@
+Bootstrap: docker
+From anibali/pytorch:cuda-8.0
+
+%post
+    pip install torch hickle torchtext scipy numpy_utils
+    echo "export CUDA_HOME=\"/usr/local/cuda\"" >> $SINGULARITY_ENVIRONMENT
+    echo "export PYTHONPATH=\"${PYTHONPATH}:/ares\"" >> $SINGULARITY_ENVIRONMENT
+
