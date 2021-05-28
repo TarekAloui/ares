@@ -1,5 +1,5 @@
 Bootstrap: docker
-From anibali/pytorch:cuda-8.0
+From: anibali/pytorch:1.8.1-cuda11.1
 
 %post
     pip install torch hickle torchtext scipy numpy_utils

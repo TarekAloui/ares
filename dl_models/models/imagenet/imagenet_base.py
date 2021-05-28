@@ -30,9 +30,9 @@ class imagenetBase(ModelBase):
     self.default_prune_factors = []
 
     #Directory to store preprocessed files. This will need to be changed to ones own download of imagenet. We assume the set has been normalized to [0,1] with var=1
-    self.train_dir = '/data/imagenet/train/hickle/'
-    self.val_dir = '/data/imagenet/val/pytorch/'
-    preprocessing_dir = '/data/imagenet/preprocessed/'
+    self.train_dir = '/n/acc_lab/data/ilsvrc2012/preprocessed/train_hkl_b256_b_256'  #'/data/imagenet/train/hickle/'
+    self.val_dir = '/n/acc_lab/data/ilsvrc2012/preprocessed/val_hkl_b256_b_256' #'/data/imagenet/val/pytorch/'
+    preprocessing_dir = '/n/acc_lab/data/ilsvrc2012/preprocessed' #'/data/imagenet/preprocessed/'
     labels_dir          = preprocessing_dir + "labels/"
     self.val_labels_filepath   = labels_dir + "val_labels.npy"
     self.train_labels_filepath = labels_dir + "train_labels.npy"
