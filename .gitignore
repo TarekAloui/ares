@@ -9,3 +9,8 @@ experiments/train/trained_models/
 
 
 data/
+ares.simg
+/data/imagenet_legacy
+imagenet-excerpts.tar.gz
+ares.sif
+ares.yml

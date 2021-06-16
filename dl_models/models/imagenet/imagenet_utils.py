@@ -6,6 +6,7 @@ import scipy
 from torch.utils.data import Dataset, DataLoader
 import torchvision.transforms as transforms
 import torch
+import hickle as hkl
 
 
 class imageNet(Dataset):  # Dataset to handle train and test sets
@@ -13,7 +14,7 @@ class imageNet(Dataset):  # Dataset to handle train and test sets
         self.img_dir = img_dir
         self.labels = torch.tensor(labels, dtype=torch.long, device=device)
         self.batch_size = 256
-        self.img_pickles = sorted(glob.glob(self.img_dir + "*.pt"))
+        self.img_pickles = sorted(glob.glob(self.img_dir + "*.hkl"))
         self.device = device
 
     def __len__(self):
@@ -30,7 +31,9 @@ class imageNet(Dataset):  # Dataset to handle train and test sets
 
     def load_pickled_imgs(self, batchid):
         path = self.img_pickles[batchid]
-        return torch.load(path, map_location=self.device)
+        arr = hkl.load(path)
+        return torch.Tensor(arr, device=self.device)
+        # return torch.load(path, map_location=self.device)
 
 
 """ Loads train.npy, val.npy and shuffled_train_filenames.npy"""

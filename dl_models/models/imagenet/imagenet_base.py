@@ -1,4 +1,5 @@
 import operator as op
+from posixpath import split
 
 from dl_models.models.base import *
 
@@ -12,6 +13,7 @@ from torch.utils.data import Dataset, DataLoader
 import scipy
 import torch
 import time
+import numpy as np
 
 from dl_models.models.imagenet.imagenet_utils import *
 
@@ -31,11 +33,19 @@ class imagenetBase(ModelBase):
         self.default_prune_factors = []
 
         # Directory to store preprocessed files. This will need to be changed to ones own download of imagenet. We assume the set has been normalized to [0,1] with var=1
-        self.train_dir = "/n/acc_lab/data/ilsvrc2012/preprocessed/train_hkl_b256_b_256/"  #'/data/imagenet/train/hickle/'
-        self.val_dir = "/n/acc_lab/data/ilsvrc2012/preprocessed/val_hkl_b256_b_256/"  #'/data/imagenet/val/pytorch/'
+
+        # # imagenet : /n/acc_lab/imagenet
+        # self.train_dir = "/data/imagenet/train/"  #'/data/imagenet/train/hickle/'
+        # self.root_dir = "/data/imagenet/"
+        # self.val_dir = "/data/imagenet/val/"  #'/data/imagenet/val/pytorch/'
+
+        # ilsvrc2012
         preprocessing_dir = (
-            "/n/acc_lab/data/ilsvrc2012/preprocessed/"  #'/data/imagenet/preprocessed/'
+            "/data/imagenet/preprocessed/"  #'/data/imagenet/preprocessed/'
         )
+        self.train_dir = preprocessing_dir + "/train/"  #'/data/imagenet/train/hickle/'
+        self.val_dir = preprocessing_dir + "/val/"  #'/data/imagenet/val/pytorch/'
+
         labels_dir = preprocessing_dir + "labels/"
         self.val_labels_filepath = labels_dir + "val_labels.npy"
         self.train_labels_filepath = labels_dir + "train_labels.npy"
@@ -80,6 +90,16 @@ class imagenetBase(ModelBase):
             for i in range(self.num_val_blocks):
                 diff = time.time()
                 X, y = self.testdata.__getitem__(i)
+
+                print(
+                    "Type of x:",
+                    type(X),
+                    "Type y:",
+                    type(y),
+                    "Item:",
+                    self.testdata.__getitem__(i),
+                )
+
                 inputs, labels = X.to(self.device), y.to(self.device)
                 count += list(labels.data.size())[0]
                 self.check_data(inputs, labels, losses)
