@@ -34,12 +34,6 @@ class imagenetBase(ModelBase):
 
         # Directory to store preprocessed files. This will need to be changed to ones own download of imagenet. We assume the set has been normalized to [0,1] with var=1
 
-        # # imagenet : /n/acc_lab/imagenet
-        # self.train_dir = "/data/imagenet/train/"  #'/data/imagenet/train/hickle/'
-        # self.root_dir = "/data/imagenet/"
-        # self.val_dir = "/data/imagenet/val/"  #'/data/imagenet/val/pytorch/'
-
-        # ilsvrc2012
         preprocessing_dir = (
             "/data/imagenet/preprocessed/"  #'/data/imagenet/preprocessed/'
         )

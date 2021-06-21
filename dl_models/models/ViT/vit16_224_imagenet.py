@@ -1,3 +1,4 @@
+from dl_models.models.imagenet.imagenet_base import imagenetBase
 import torch.nn as nn
 import torch.nn.functional as F
 import torchvision
@@ -7,12 +8,13 @@ from dl_models.models.base import *
 import timm
 
 
-class cifarDeIT(ModelBase):
+class imagenetViT16_224(imagenetBase):
     def __init__(self):
-        super(cifarDeIT).__init__("cifar", "DeIT")
+        super(imagenetViT16_224, self).__init__("imagenet", "ViT")
         self.layer_ids = []
         self.default_prune_factors = []
 
-    def build_model(self, faults=[]):
-        module = timm.create_model("vit_base_patch16_224", pretrained=True)
+    def build_model(self, pretrained=True, faults=[]):
+        self.pretrained = pretrained
+        module = timm.create_model("vit_base_patch16_224", pretrained)
         self.set_model(module, self.layer_ids, self.default_prune_factors)

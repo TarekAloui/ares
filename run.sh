@@ -11,4 +11,5 @@ mkdir -p results
 # python /ares/run_models.py -m cifar10_vgg -eps 10 -v  -to -c /ares/conf
 
 #Training SVHN
-python /ares/run_models.py -m imagenet_resnet50 -eps 10 -v  -to -c /ares/conf
+#python /ares/run_models.py -m imagenet_resnet50 -eps 10 -v  -to -c /ares/conf
+python /ares/run_models.py -m imagenet_vit16_224 -eps 10 -v  -to -c /ares/conf

@@ -16,6 +16,7 @@ from dl_models.models import tidigitsGRU
 from dl_models.models import tidigitsRNN
 from dl_models.models import tidigitsLSTM
 from dl_models.models import cifar10alexnet
+from dl_models.models.ViT.vit16_224_imagenet import imagenetViT16_224
 
 
 from dl_models.transform import SummarizeSparsity
@@ -33,6 +34,7 @@ model_class_map = {
     "tidigits_lstm": tidigitsLSTM,
     "imagenet_inceptionv3": imagenetInceptionv3,
     "cifar10_alexnet": cifar10alexnet,
+    "imagenet_vit16_224": imagenetViT16_224,
 }
 
 
